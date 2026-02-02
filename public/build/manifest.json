@@ -1,6 +1,10 @@
 {
+  "public/images/main-photo.jpeg": {
+    "file": "assets/main-photo-CwCafFG2.jpeg",
+    "src": "public/images/main-photo.jpeg"
+  },
   "resources/css/app.css": {
-    "file": "assets/app-BO2xZKhh.css",
+    "file": "assets/app-Doj8kUaz.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -9,7 +13,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-pcXvoXkq.js",
+    "file": "assets/app-BJ89-OI3.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

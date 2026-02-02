@@ -1,14 +1,18 @@
+// ==========================================
+// وظائف الأنيميشن عند التمرير
+// ==========================================
 function animateOnScroll() {
     const animatedElements = document.querySelectorAll(
         ".about-feature-item, .about-image-card, .about-vision-box, .about-stats-rectangle, .package-card, .contact-item, .contact-form, .footer-column",
     );
 
     animatedElements.forEach((element) => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const elementBottom = element.getBoundingClientRect().bottom;
+        const rect = element.getBoundingClientRect();
+        const elementTop = rect.top;
+        const elementBottom = rect.bottom;
         const screenPosition = window.innerHeight / 1.2;
 
-        if (elementPosition < screenPosition && elementBottom > 0) {
+        if (elementTop < screenPosition && elementBottom > 0) {
             element.classList.remove("animate-out");
             element.classList.add("animate-in");
 
@@ -20,39 +24,72 @@ function animateOnScroll() {
             if (element.closest(".contact-container")) {
                 element.closest(".contact-container").classList.add("animated");
             }
-        } else if (elementBottom < 0 || elementPosition > window.innerHeight) {
+        } else if (elementBottom < 0 || elementTop > window.innerHeight) {
             element.classList.remove("animate-in");
             element.classList.add("animate-out");
         }
     });
 }
 
-// تشغيل مرة أولية
-window.addEventListener("DOMContentLoaded", function () {
-    setTimeout(() => {
-        animateOnScroll();
-    }, 500);
-});
+// ==========================================
+// كاونترات الأرقام المتحركة
+// ==========================================
+function startCounters() {
+    const clientCounter = document.getElementById("clientCounter");
+    const coverageCounter = document.getElementById("coverageCounter");
 
-// تحديث الأنيميشن عند التمرير
-window.addEventListener("scroll", animateOnScroll);
+    if (!clientCounter || !coverageCounter) return;
 
-// تغيير شريط التنقل عند التمرير
-window.addEventListener("scroll", function () {
-    const navbar = document.getElementById("navbar");
-    if (window.scrollY > 100) {
-        navbar.classList.add("scrolled");
-    } else {
-        navbar.classList.remove("scrolled");
+    const targetClients = 25;
+    const targetCoverage = 100;
+    let clientCount = 0;
+    let coverageCount = 0;
+
+    const clientInterval = setInterval(() => {
+        clientCount++;
+        clientCounter.textContent = `+${clientCount}`;
+        if (clientCount >= targetClients) clearInterval(clientInterval);
+    }, 60);
+
+    const coverageInterval = setInterval(() => {
+        coverageCount++;
+        coverageCounter.textContent = `${coverageCount}%`;
+        if (coverageCount >= targetCoverage) clearInterval(coverageInterval);
+    }, 20);
+}
+
+function checkCounters() {
+    const statsSection = document.querySelector(".about-stats-rectangle");
+    if (!statsSection || window.countersStarted) return;
+
+    const sectionTop = statsSection.getBoundingClientRect().top;
+    const screenPosition = window.innerHeight / 1.5;
+
+    if (sectionTop < screenPosition) {
+        window.countersStarted = true;
+        startCounters();
     }
+}
+
+// ==========================================
+// تغيير شريط التنقل عند التمرير
+// ==========================================
+const navbar = document.getElementById("navbar");
+window.addEventListener("scroll", () => {
+    if (!navbar) return;
+    if (window.scrollY > 100) navbar.classList.add("scrolled");
+    else navbar.classList.remove("scrolled");
 });
 
-// تفعيل القائمة المتحركة للجوال
+// ==========================================
+// القائمة المتحركة للجوال
+// ==========================================
 const mobileMenuBtn = document.getElementById("mobileMenuBtn");
 const mobileMenu = document.getElementById("mobileMenu");
 const overlay = document.getElementById("overlay");
 
 function toggleMobileMenu() {
+    if (!mobileMenu || !overlay) return;
     mobileMenu.classList.toggle("active");
     overlay.classList.toggle("active");
     document.body.style.overflow = mobileMenu.classList.contains("active")
@@ -60,108 +97,128 @@ function toggleMobileMenu() {
         : "auto";
 }
 
-mobileMenuBtn.addEventListener("click", toggleMobileMenu);
-overlay.addEventListener("click", toggleMobileMenu);
+if (mobileMenuBtn && mobileMenu && overlay) {
+    mobileMenuBtn.addEventListener("click", toggleMobileMenu);
+    overlay.addEventListener("click", toggleMobileMenu);
 
-// إغلاق القائمة عند النقر على رابط
-document.querySelectorAll(".mobile-menu a").forEach((link) => {
-    link.addEventListener("click", function (e) {
-        if (this.getAttribute("href").startsWith("#")) {
+    document.querySelectorAll(".mobile-menu a").forEach((link) => {
+        link.addEventListener("click", function () {
+            const href = this.getAttribute("href");
+            if (!href.startsWith("#")) return;
+
             toggleMobileMenu();
-
-            const targetId = this.getAttribute("href");
-            const targetElement = document.querySelector(targetId);
-
-            if (targetElement) {
-                document.body.classList.add("page-exit");
-
-                setTimeout(() => {
-                    targetElement.scrollIntoView({
-                        behavior: "smooth",
-                    });
-
-                    setTimeout(() => {
-                        document.body.classList.remove("page-exit");
-                    }, 100);
-                }, 300);
-            }
-        }
+            const target = document.querySelector(href);
+            if (target) target.scrollIntoView({ behavior: "smooth" });
+        });
     });
+}
+
+// ==========================================
+// التبويبات - policy tabs
+// ==========================================
+document.addEventListener("DOMContentLoaded", function () {
+    // ===== Policy Tabs Click =====
+    document.querySelectorAll(".policy-tab").forEach((tab) => {
+        tab.addEventListener("click", function () {
+            const tabId = this.getAttribute("data-tab");
+            const targetSection = document.getElementById(tabId);
+            if (!targetSection) return; // إذا القسم غير موجود
+
+            // إزالة النشاط من جميع التبويبات والأقسام
+            document
+                .querySelectorAll(".policy-tab")
+                .forEach((t) => t.classList.remove("active"));
+            document
+                .querySelectorAll(".policy-section")
+                .forEach((s) => s.classList.remove("active"));
+
+            // تفعيل التبويب الحالي والقسم المرتبط
+            this.classList.add("active");
+            targetSection.classList.add("active");
+
+            // تمرير سلس للقسم
+            targetSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+
+            // تحديث URL بالـ hash بدون إعادة تحميل الصفحة
+            if (history.pushState) {
+                history.pushState(null, null, "#" + tabId);
+            } else {
+                window.location.hash = tabId;
+            }
+        });
+    });
+
+    // ===== Scroll عند الدخول مباشرة برابط Hash =====
+    const hash = window.location.hash.slice(1); // إزالة #
+    if (hash) {
+        const section = document.getElementById(hash);
+        const tab = document.querySelector(`.policy-tab[data-tab="${hash}"]`);
+
+        if (tab) tab.classList.add("active"); // تفعيل التبويب
+        if (section) section.classList.add("active"); // تفعيل القسم
+
+        if (section)
+            section.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+    }
 });
 
-// أنيميشن الخروج عند النقر على الروابط في التنقل الرئيسي
-document.querySelectorAll('.nav-links a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", function (e) {
-        if (this.getAttribute("href") !== "#") {
-            e.preventDefault();
+// ==========================================
+// نموذج الاتصال
+// ==========================================
+const contactForm = document.getElementById("contactForm");
+if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const submitBtn = this.querySelector(".submit-btn");
+        if (!submitBtn) return;
 
-            const targetId = this.getAttribute("href");
-            const targetElement = document.querySelector(targetId);
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = "جاري الإرسال...";
+        submitBtn.disabled = true;
 
-            if (targetElement) {
-                document.body.classList.add("page-exit");
-
-                setTimeout(() => {
-                    targetElement.scrollIntoView({
-                        behavior: "smooth",
-                    });
-
-                    setTimeout(() => {
-                        document.body.classList.remove("page-exit");
-                    }, 100);
-                }, 500);
-            }
-        }
+        setTimeout(() => {
+            alert("شكراً لتواصلك معنا! سنرد عليك في أقرب وقت ممكن.");
+            this.reset();
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }, 1500);
     });
-});
+}
 
-// أنيميشن تدوير الأيقونات في الباقات
+// ==========================================
+// أنيميشن الباقات - تدوير الأيقونات
+// ==========================================
 document.querySelectorAll(".package-card").forEach((card) => {
+    const icon = card.querySelector(".package-icon");
     card.addEventListener("mouseenter", function () {
-        const icon = this.querySelector(".package-icon");
         if (icon) {
             icon.style.transform = "rotate(360deg)";
             icon.style.transition =
                 "transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55)";
         }
     });
-
     card.addEventListener("mouseleave", function () {
-        const icon = this.querySelector(".package-icon");
-        if (icon) {
-            icon.style.transform = "rotate(0deg)";
-        }
+        if (icon) icon.style.transform = "rotate(0deg)";
     });
 });
 
-// معالجة نموذج الاتصال
-document.getElementById("contactForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const submitBtn = this.querySelector(".submit-btn");
-    const originalText = submitBtn.textContent;
-
-    submitBtn.textContent = "جاري الإرسال...";
-    submitBtn.disabled = true;
-
-    setTimeout(() => {
-        alert("شكراً لتواصلك معنا! سنرد عليك في أقرب وقت ممكن.");
-        this.reset();
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    }, 1500);
-});
-
-// تفعيل أزرار اختيار الباقات
-document.querySelectorAll(".package-cta").forEach((button) => {
-    button.addEventListener("click", function () {
+// ==========================================
+// أزرار اختيار الباقات
+// ==========================================
+document.querySelectorAll(".package-cta").forEach((btn) => {
+    btn.addEventListener("click", function () {
         const packageName =
-            this.closest(".package-card").querySelector("h3").textContent;
+            this.closest(".package-card")?.querySelector("h3")?.textContent;
+        if (!packageName) return;
 
         this.style.transform = "scale(0.95)";
-        setTimeout(() => {
-            this.style.transform = "";
-        }, 200);
+        setTimeout(() => (this.style.transform = ""), 200);
 
         setTimeout(() => {
             alert(
@@ -171,58 +228,9 @@ document.querySelectorAll(".package-cta").forEach((button) => {
     });
 });
 
-// كاونترات الأرقام المتحركة
-function startCounters() {
-    const clientCounter = document.getElementById("clientCounter");
-    const coverageCounter = document.getElementById("coverageCounter");
-
-    const targetClients = 25;
-    const targetCoverage = 100;
-
-    let clientCount = 0;
-    let coverageCount = 0;
-
-    const clientInterval = setInterval(() => {
-        clientCount++;
-        clientCounter.textContent = `+${clientCount}`;
-
-        if (clientCount >= targetClients) {
-            clearInterval(clientInterval);
-        }
-    }, 60);
-
-    const coverageInterval = setInterval(() => {
-        coverageCount++;
-        coverageCounter.textContent = `${coverageCount}%`;
-
-        if (coverageCount >= targetCoverage) {
-            clearInterval(coverageInterval);
-        }
-    }, 20);
-}
-
-// تفعيل الكاونترات عند التمرير للقسم
-function checkCounters() {
-    const statsSection = document.querySelector(".about-stats-rectangle");
-    if (statsSection) {
-        const sectionPosition = statsSection.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.5;
-
-        if (sectionPosition < screenPosition) {
-            if (!window.countersStarted) {
-                window.countersStarted = true;
-                startCounters();
-            }
-        }
-    }
-}
-
-// تفعيل الأنيميشن عند التحميل
-setTimeout(() => {
-    animateOnScroll();
-}, 100);
-
-// نظام متقدم لتتبع ظهور العناصر
+// ==========================================
+// تفعيل الأنيميشن والكاونترات عند التمرير
+// ==========================================
 let scrollTimeout;
 window.addEventListener("scroll", function () {
     clearTimeout(scrollTimeout);
@@ -232,51 +240,11 @@ window.addEventListener("scroll", function () {
     }, 30);
 });
 
-// إضافة أنيميشن عند تحميل الصفحة
-window.addEventListener("load", function () {
-    const mainElements = document.querySelectorAll(
-        ".hero-content, .section-title, .packages-subtitle",
-    );
-    mainElements.forEach((element, index) => {
-        element.style.animationDelay = `${index * 0.2}s`;
-    });
-
-    setTimeout(() => {
-        animateOnScroll();
-    }, 800);
+// ==========================================
+// تشغيل أولي عند التحميل
+// ==========================================
+window.addEventListener("DOMContentLoaded", () => {
+    animateOnScroll();
+    checkCounters();
 });
-
-// بدء الكاونترات عند التحميل
-window.addEventListener("DOMContentLoaded", function () {
-    // تأخير بدء الكاونترات قليلاً
-    setTimeout(() => {
-        checkCounters();
-    }, 1000);
-});
-
-document.querySelectorAll(".policy-tab").forEach((tab) => {
-    tab.addEventListener("click", function () {
-        // إزالة النشاط من جميع التبويبات
-        document.querySelectorAll(".policy-tab").forEach((t) => {
-            t.classList.remove("active");
-        });
-
-        // إخفاء جميع الأقسام
-        document.querySelectorAll(".policy-section").forEach((section) => {
-            section.classList.remove("active");
-        });
-
-        // تفعيل التبويب الحالي
-        this.classList.add("active");
-
-        // إظهار القسم المرتبط
-        const tabId = this.getAttribute("data-tab");
-        document.getElementById(tabId).classList.add("active");
-
-        // التمرير للقسم
-        document.getElementById(tabId).scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-        });
-    });
-});
+window.addEventListener("load", () => animateOnScroll());

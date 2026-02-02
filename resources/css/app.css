@@ -1,8 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap");
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Tajawal", "Segoe UI", sans-serif;
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+    font-weight: 500;
+    font-style: normal;
 }
 
 html {
@@ -19,6 +23,10 @@ body {
     animation: fadeInBody 1s ease forwards;
 }
 
+a {
+    text-decoration: none;
+}
+
 @keyframes fadeInBody {
     to {
         opacity: 1;
@@ -26,7 +34,6 @@ body {
 }
 
 .container {
-    /* width: 90%; */
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
@@ -264,7 +271,7 @@ body {
     min-height: 100vh;
     background:
         linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)),
-        url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80");
+        url("/public/images/main-photo.jpeg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1189,7 +1196,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "Font Awesome 6 Free";
     font-weight: 900;
     color: #ffdd00;
     font-size: 0.7rem;
@@ -1622,6 +1628,7 @@ textarea.form-input {
 
 .policy-list li {
     margin-bottom: 15px;
+    list-style: none;
 }
 
 .policy-list a {
@@ -2508,5 +2515,1222 @@ textarea.form-input {
     .policy-table {
         display: block;
         overflow-x: auto;
+    }
+}
+
+.login-page-reset * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* صفحة تسجيل الدخول */
+.login-page-wrapper {
+    color: #4d4d4d;
+    line-height: 1.7;
+    background-color: #000000;
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* تصميم الشريط الجانبي */
+.login-sidebar-panel {
+    width: 45%;
+    background: linear-gradient(135deg, #111111 0%, #000000 100%);
+    padding: 60px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* تأثيرات خلفية الشريط الجانبي */
+.sidebar-pattern-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(255, 221, 0, 0.08) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(255, 221, 0, 0.06) 0%,
+            transparent 50%
+        );
+    z-index: 1;
+}
+
+/* خطوط متقاطعة متحركة */
+.sidebar-diagonal-lines {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 15px,
+        rgba(255, 221, 0, 0.03) 15px,
+        rgba(255, 221, 0, 0.03) 30px
+    );
+    animation: diagonalMove 20s linear infinite;
+    z-index: 2;
+}
+
+@keyframes diagonalMove {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 60px 60px;
+    }
+}
+
+/* دوائر متحركة */
+.sidebar-floating-circles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+.sidebar-floating-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 221, 0, 0.03);
+    animation: floatSidebarCircle 25s ease-in-out infinite;
+}
+
+.sidebar-circle-large {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    right: 10%;
+    animation-delay: 0s;
+}
+
+.sidebar-circle-medium {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    right: 60%;
+    animation-delay: 8s;
+    background: rgba(255, 221, 0, 0.05);
+}
+
+@keyframes floatSidebarCircle {
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.2;
+    }
+
+    33% {
+        transform: translate(30px, -20px) scale(1.1);
+        opacity: 0.3;
+    }
+
+    66% {
+        transform: translate(-20px, 25px) scale(0.9);
+        opacity: 0.1;
+    }
+}
+
+/* محتوى الشريط الجانبي */
+.sidebar-content-wrapper {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+/* الشعار */
+.login-logo-container {
+    margin-bottom: 40px;
+}
+
+.login-main-logo {
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 221, 0, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    color: #ffdd00;
+    margin: 0 auto 20px;
+    border: 3px solid rgba(255, 221, 0, 0.3);
+    box-shadow: 0 0 40px rgba(255, 221, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* أنيميشن النبض للشعار */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 221, 0, 0.4);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 20px rgba(255, 221, 0, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 221, 0, 0);
+    }
+}
+
+.pulse-animation {
+    animation: pulse 3s infinite;
+}
+
+/* أنيميشن الارتداد للأيقونة */
+@keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.logo-icon-bounce {
+    animation: bounce 3s infinite 1s;
+}
+
+/* العنوان */
+.login-main-title {
+    font-size: 3.2rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    color: #ffffff;
+    line-height: 1.1;
+}
+
+.login-main-title-accent {
+    color: #ffdd00;
+}
+
+/* أنيميشن انزلاق العنوان */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.title-slide-in {
+    animation: slideInRight 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+/* أنيميشن الارتداد للعنوان */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    70% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.title-bounce {
+    animation: bounceIn 1s ease-out;
+}
+
+/* الوصف */
+.login-description-text {
+    font-size: 1.3rem;
+    color: #cccccc;
+    margin-bottom: 40px;
+    line-height: 1.8;
+    max-width: 450px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* أنيميشن التلاشي للنص */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.text-fade-in {
+    animation: fadeIn 1s ease-out 0.8s forwards;
+    opacity: 0;
+}
+
+/* أنيميشن الكتابة للنصوص */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    0%,
+    100% {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: #ffdd00;
+    }
+}
+
+.text-typing {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #ffdd00;
+    width: 0;
+    animation:
+        typing 3s steps(40, end) forwards,
+        blink 0.75s step-end infinite;
+    animation-delay: 0.5s;
+}
+
+/* المميزات */
+.login-features-container {
+    text-align: right;
+    margin-top: 40px;
+    position: relative;
+}
+
+.login-feature-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border-right: 4px solid #ffdd00;
+    transition: all 0.3s ease;
+}
+
+.feature-slide-in {
+    animation: slideInRight 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.login-feature-card:hover {
+    background: rgba(255, 221, 0, 0.05);
+    transform: translateX(-5px);
+}
+
+.login-feature-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 221, 0, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #ffdd00;
+    flex-shrink: 0;
+}
+
+/* أنيميشن الدوران للأيقونات */
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotate(-180deg) scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+}
+
+.icon-rotate {
+    animation: rotateIn 0.8s ease-out;
+}
+
+.login-feature-details h4 {
+    color: #ffffff;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+.login-feature-details p {
+    color: #aaaaaa;
+    font-size: 1rem;
+}
+
+/* قسم تسجيل الدخول */
+.login-form-panel {
+    width: 55%;
+    background: #ffffff;
+    padding: 60px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* زخرفة الخلفية */
+.login-background-pattern {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(255, 221, 0, 0.02) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at 10% 90%,
+            rgba(255, 221, 0, 0.02) 0%,
+            transparent 50%
+        );
+    z-index: 1;
+}
+
+/* محتوى تسجيل الدخول */
+.login-form-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 450px;
+}
+
+/* رأس تسجيل الدخول */
+.login-form-header {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.login-form-header h2 {
+    color: #000000;
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.login-form-subtitle {
+    color: #666666;
+    font-size: 1.2rem;
+}
+
+/* النموذج */
+.login-form-wrapper {
+    margin-bottom: 30px;
+}
+
+/* مجموعات الحقول */
+.login-form-group {
+    margin-bottom: 30px;
+}
+
+.form-group-slide-in {
+    animation: slideInRight 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.login-input-label {
+    display: block;
+    margin-bottom: 10px;
+    color: #000000;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* أنيميشن الطفو للعناصر */
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.label-float {
+    animation: floatUp 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+.input-float {
+    animation: floatUp 0.5s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.icon-float {
+    animation: floatUp 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+.login-input-label i {
+    color: #ffdd00;
+    font-size: 1.2rem;
+}
+
+.login-input-wrapper {
+    position: relative;
+}
+
+.login-form-input {
+    width: 100%;
+    padding: 18px 20px;
+    font-size: 1.1rem;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    background: #f8f8f8;
+    color: #000000;
+    transition: all 0.3s ease;
+    padding-right: 55px;
+}
+
+/* أنيميشن التوهج للحقول */
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 221, 0, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(255, 221, 0, 0.6);
+    }
+
+    100% {
+        box-shadow: 0 0 5px rgba(255, 221, 0, 0.3);
+    }
+}
+
+.input-glow:focus {
+    animation: glowPulse 2s infinite;
+}
+
+.login-form-input:focus {
+    outline: none;
+    border-color: #ffdd00;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(255, 221, 0, 0.15);
+}
+
+.login-input-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666666;
+    font-size: 1.3rem;
+}
+
+/* زر إظهار/إخفاء كلمة المرور */
+.login-password-toggle {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #666666;
+    cursor: pointer;
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+}
+
+.login-password-toggle:hover {
+    color: #ffdd00;
+}
+
+/* زر تسجيل الدخول */
+.login-submit-button {
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(90deg, #000000, #111111);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.pulse-glow {
+    animation: glowPulse 3s infinite;
+}
+
+.pulse-glow:hover {
+    animation: glowPulse 1s infinite;
+}
+
+.login-submit-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #ffdd00, #ffbb00);
+    z-index: 1;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+}
+
+.login-submit-button:hover::before {
+    transform: translateX(0);
+}
+
+.login-button-text {
+    position: relative;
+    z-index: 2;
+}
+
+.login-button-icon {
+    position: relative;
+    z-index: 2;
+}
+
+.icon-bounce {
+    animation: bounce 2s infinite;
+}
+
+.login-submit-button:hover {
+    color: #000000;
+    box-shadow: 0 10px 25px rgba(255, 221, 0, 0.3);
+    transform: translateY(-3px);
+}
+
+/* رابط نسيت كلمة المرور */
+.login-forgot-link {
+    display: block;
+    text-align: center;
+    margin-top: 25px;
+    color: #666666;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.link-float {
+    animation: floatUp 0.5s ease-out 1.5s forwards;
+    opacity: 0;
+}
+
+/* أنيميشن الدوران للأيقونات */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.icon-spin:hover {
+    animation: spin 1s linear;
+}
+
+.login-forgot-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: #ffdd00;
+    transition: width 0.3s ease;
+}
+
+.login-forgot-link:hover {
+    color: #000000;
+}
+
+.login-forgot-link:hover::after {
+    width: 100%;
+}
+
+/* رابط إنشاء حساب جديد */
+.login-register-section {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: #666666;
+    font-size: 1.1rem;
+}
+
+.login-register-link {
+    color: #ffdd00;
+    text-decoration: none;
+    font-weight: 700;
+    margin-right: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-bottom: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* أنيميشن الانزلاق للروابط */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.link-slide {
+    animation: slideInLeft 0.6s ease-out 1s forwards;
+    opacity: 0;
+}
+
+.icon-slide {
+    animation: slideInLeft 0.6s ease-out 1.2s forwards;
+    opacity: 0;
+}
+
+.login-register-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: #ffdd00;
+    transition: width 0.3s ease;
+}
+
+.login-register-link:hover {
+    color: #000000;
+}
+
+.login-register-link:hover::after {
+    width: 100%;
+}
+
+/* تأثير إضافي للنموذج */
+.login-form-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 221, 0, 0.05);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* رسائل التنبيه */
+.login-alert-message {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    display: none;
+    align-items: center;
+    gap: 15px;
+    animation: alertFadeIn 0.5s ease;
+}
+
+@keyframes alertFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* أنيميشن الاهتزاز للرسائل الخطأ */
+@keyframes shake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+.shake-animation {
+    animation: shake 0.5s ease-in-out;
+}
+
+.login-alert-error {
+    background: rgba(220, 53, 69, 0.1);
+    border: 2px solid rgba(220, 53, 69, 0.3);
+    color: #dc3545;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    border-radius: 10px;
+}
+
+.login-input-error {
+    color: #dc3545;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: block;
+}
+
+/* أنيميشن للنجوم */
+.star {
+    position: absolute;
+    background: #ffdd00;
+    border-radius: 50%;
+    animation: twinkle 2s infinite;
+}
+
+.star-1 {
+    width: 3px;
+    height: 3px;
+    top: 20%;
+    right: 15%;
+    animation-delay: 0s;
+}
+
+.star-2 {
+    width: 4px;
+    height: 4px;
+    top: 40%;
+    right: 30%;
+    animation-delay: 0.5s;
+}
+
+.star-3 {
+    width: 2px;
+    height: 2px;
+    top: 60%;
+    right: 45%;
+    animation-delay: 1s;
+}
+
+.star-4 {
+    width: 3px;
+    height: 3px;
+    top: 30%;
+    right: 60%;
+    animation-delay: 1.5s;
+}
+
+.star-5 {
+    width: 4px;
+    height: 4px;
+    top: 50%;
+    right: 75%;
+    animation-delay: 2s;
+}
+
+@keyframes twinkle {
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* أنيميشن للجسيمات */
+.particle {
+    position: absolute;
+    background: rgba(255, 221, 0, 0.1);
+    border-radius: 50%;
+    animation: floatParticle 15s infinite linear;
+}
+
+.particle-1 {
+    width: 8px;
+    height: 8px;
+    top: 10%;
+    right: 10%;
+    animation-delay: 0s;
+}
+
+.particle-2 {
+    width: 6px;
+    height: 6px;
+    top: 30%;
+    right: 25%;
+    animation-delay: 3s;
+}
+
+.particle-3 {
+    width: 10px;
+    height: 10px;
+    top: 50%;
+    right: 40%;
+    animation-delay: 6s;
+}
+
+.particle-4 {
+    width: 7px;
+    height: 7px;
+    top: 70%;
+    right: 55%;
+    animation-delay: 9s;
+}
+
+.particle-5 {
+    width: 5px;
+    height: 5px;
+    top: 90%;
+    right: 70%;
+    animation-delay: 12s;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.5;
+    }
+
+    90% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translate(100px, -100px) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+/* أنيميشن للنقاط المتلألئة */
+.sparkle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ffdd00;
+    border-radius: 50%;
+    animation: sparkle 1.5s infinite;
+    box-shadow: 0 0 10px #ffdd00;
+}
+
+.sparkle-1 {
+    top: 20%;
+    right: 20%;
+    animation-delay: 0s;
+}
+
+.sparkle-2 {
+    top: 40%;
+    right: 40%;
+    animation-delay: 0.3s;
+}
+
+.sparkle-3 {
+    top: 60%;
+    right: 60%;
+    animation-delay: 0.6s;
+}
+
+.sparkle-4 {
+    top: 80%;
+    right: 80%;
+    animation-delay: 0.9s;
+}
+
+@keyframes sparkle {
+    0%,
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* أنيميشن للمكعبات الطائرة */
+.floating-box {
+    position: absolute;
+    background: rgba(255, 221, 0, 0.05);
+    border: 1px solid rgba(255, 221, 0, 0.1);
+    animation: floatBox 20s infinite linear;
+}
+
+.box-1 {
+    width: 30px;
+    height: 30px;
+    top: 15%;
+    right: 25%;
+    animation-delay: 0s;
+}
+
+.box-2 {
+    width: 20px;
+    height: 20px;
+    top: 45%;
+    right: 65%;
+    animation-delay: 7s;
+}
+
+.box-3 {
+    width: 25px;
+    height: 25px;
+    top: 75%;
+    right: 35%;
+    animation-delay: 14s;
+}
+
+@keyframes floatBox {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(50px, -30px) rotate(90deg);
+    }
+
+    50% {
+        transform: translate(100px, 20px) rotate(180deg);
+    }
+
+    75% {
+        transform: translate(50px, 50px) rotate(270deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(360deg);
+    }
+}
+
+/* أنيميشن للخطوط المتقاطعة */
+.cross-line {
+    position: absolute;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 221, 0, 0.2),
+        transparent
+    );
+    animation: crossLine 8s infinite linear;
+}
+
+.line-1 {
+    width: 100px;
+    height: 1px;
+    top: 25%;
+    right: 0;
+    animation-delay: 0s;
+}
+
+.line-2 {
+    width: 150px;
+    height: 1px;
+    top: 50%;
+    right: 0;
+    animation-delay: 2s;
+}
+
+.line-3 {
+    width: 200px;
+    height: 1px;
+    top: 75%;
+    right: 0;
+    animation-delay: 4s;
+}
+
+@keyframes crossLine {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* تصميم متجاوب - للأجهزة الصغيرة */
+@media (max-width: 768px) {
+    .login-page-wrapper {
+        display: block;
+    }
+
+    .login-sidebar-panel {
+        display: none;
+    }
+
+    .login-form-panel {
+        width: 100%;
+        min-height: 100vh;
+        padding: 40px 25px;
+        background: #000000;
+    }
+
+    .login-form-container {
+        background: #ffffff;
+        padding: 40px 30px;
+        border-radius: 20px;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .login-background-pattern,
+    .particles-animation,
+    .sparkle-animation {
+        display: none;
+    }
+
+    .login-form-header h2 {
+        font-size: 2.2rem;
+        color: #000000;
+    }
+
+    .login-form-subtitle {
+        color: #666666;
+    }
+}
+
+/* للأجهزة المتوسطة والكبيرة */
+@media (min-width: 769px) and (max-width: 1200px) {
+    .login-sidebar-panel,
+    .login-form-panel {
+        width: 50%;
+    }
+
+    .login-main-title {
+        font-size: 2.8rem;
+    }
+
+    .login-form-header h2 {
+        font-size: 2.5rem;
+    }
+
+    .login-main-logo {
+        width: 100px;
+        height: 100px;
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .login-form-panel {
+        padding: 30px 20px;
+    }
+
+    .login-form-container {
+        padding: 30px 25px;
+    }
+
+    .login-form-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .login-form-input {
+        padding: 15px;
+        padding-right: 50px;
+    }
+
+    .login-submit-button {
+        padding: 18px;
+        font-size: 1.2rem;
     }
 }

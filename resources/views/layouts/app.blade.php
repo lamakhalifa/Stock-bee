@@ -29,13 +29,13 @@
                 </a>
 
                 <ul class="nav-links">
-                    <li><a href="#home">الرئيسية</a></li>
-                    <li><a href="#about">من نحن</a></li>
-                    <li><a href="#packages">الباقات</a></li>
-                    <li><a href="#contact">تواصل معنا</a></li>
+                    <li><a href="{{ route('welcome') }}">الرئيسية</a></li>
+                    <li><a href="{{ url('/#about') }}">من نحن</a></li>
+                    <li><a href="{{ url('/#packages') }}">الباقات</a></li>
+                    <li><a href="{{ url('/#contact') }}">تواصل معنا</a></li>
                 </ul>
 
-                <button class="nav-cta">ابدأ مشروعك</button>
+                <a href="{{ route('login') }}" class="nav-cta">تسجيل الدخول</a>
 
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
@@ -64,7 +64,7 @@
                 <div class="footer-grid">
                     <!-- العمود 1: معلومات الشركة -->
                     <div class="footer-column footer-about">
-                        <h4>BEE-STOCK</h4>
+                        <h4>STOCK-BEE</h4>
                         <p>شركة لوجستية سعودية نؤمن بأن نجاح عملائنا يبدأ من تنظيم سلاسل الإمداد ودقة التنفيذ. نعمل
                             كشريك فعلي مع الشركات.</p>
                         <div class="social-links">
@@ -89,12 +89,21 @@
                     <div class="footer-column footer-policies">
                         <h4>السياسات</h4>
                         <ul class="policy-list">
-                            <li><a href="{{ route('policies') }}"><i class="fas fa-shield-alt"></i> سياسة
-                                    الخصوصية</a>
+                            <li>
+                                <a href="{{ url('/policies#privacy') }}">
+                                    <i class="fas fa-shield-alt"></i> سياسة الخصوصية
+                                </a>
                             </li>
-                            {{-- <li><a href="#"><i class="fas fa-file-contract"></i> الشروط والأحكام</a></li>
-                            <li><a href="#"><i class="fas fa-handshake"></i> سياسة الإرجاع</a></li>
-                            <li><a href="#"><i class="fas fa-truck"></i> سياسة الشحن والتوصيل</a></li> --}}
+                            <li>
+                                <a href="{{ url('/policies#terms') }}">
+                                    <i class="fas fa-file-contract"></i> شروط الإستخدام
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/policies#return') }}">
+                                    <i class="fas fa-handshake"></i> سياسة الإرجاع
+                                </a>
+                            </li>
                         </ul>
                     </div>
 
@@ -153,7 +162,7 @@
                 </div>
 
                 <div class="footer-bottom">
-                    <p>© 2023 BEE-STOCK. جميع الحقوق محفوظة.</p>
+                    <p>© 2026 STOCK-BEE. جميع الحقوق محفوظة.</p>
                 </div>
             </div>
         </footer>

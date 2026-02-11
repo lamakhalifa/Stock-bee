@@ -35,8 +35,19 @@
                     <li><a href="{{ url('/#contact') }}">تواصل معنا</a></li>
                 </ul>
 
-                <a href="{{ route('login') }}" class="nav-cta">تسجيل الدخول</a>
-
+                @auth
+                    <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                        @csrf
+                        <button type="submit" class="nav-cta"
+                            style="background: #dc3545; box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);">
+                            <i class="fas fa-sign-out-alt" style="margin-left: 8px;"></i> تسجيل الخروج
+                        </button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="nav-cta">
+                        <i class="fas fa-sign-in-alt" style="margin-left: 8px;"></i> تسجيل الدخول
+                    </a>
+                @endauth
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -44,11 +55,24 @@
 
             <div class="mobile-menu" id="mobileMenu">
                 <ul>
-                    <li><a href="#home">الرئيسية</a></li>
-                    <li><a href="#about">من نحن</a></li>
-                    <li><a href="#packages">الباقات</a></li>
-                    <li><a href="#contact">تواصل معنا</a></li>
-                    <li><button class="mobile-cta">ابدأ مشروعك</button></li>
+                    <li><a href="{{ route('welcome') }}">الرئيسية</a></li>
+                    <li><a href="{{ url('/#about') }}">من نحن</a></li>
+                    <li><a href="{{ url('/#packages') }}">الباقات</a></li>
+                    <li><a href="{{ url('/#contact') }}">تواصل معنا</a></li>
+                    <!-- زر تسجيل الدخول / تسجيل الخروج -->
+                    @auth
+                        <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="nav-cta"
+                                style="background: #dc3545; box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);">
+                                <i class="fas fa-sign-out-alt" style="margin-left: 8px;"></i> تسجيل الخروج
+                            </button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" class="nav-cta">
+                            <i class="fas fa-sign-in-alt" style="margin-left: 8px;"></i> تسجيل الدخول
+                        </a>
+                    @endauth
                 </ul>
             </div>
 

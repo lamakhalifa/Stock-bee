@@ -18,3 +18,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::get('/users', [App\Http\Controllers\AdminController::class, 'index'])->name('users.index');
     Route::get('/users/export', [App\Http\Controllers\AdminController::class, 'exportExcel'])->name('users.export');
 });
+
+Route::get('/hash', function () {
+    return bcrypt('Aa@12345');
+});

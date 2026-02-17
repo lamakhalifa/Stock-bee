@@ -1,10 +1,14 @@
 {
+  "public/images/contact.jpeg": {
+    "file": "assets/contact-CcoRk10y.jpeg",
+    "src": "public/images/contact.jpeg"
+  },
   "public/images/main-photo.jpeg": {
     "file": "assets/main-photo-CwCafFG2.jpeg",
     "src": "public/images/main-photo.jpeg"
   },
   "resources/css/app.css": {
-    "file": "assets/app-Doj8kUaz.css",
+    "file": "assets/app-DF2Hndx8.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",

@@ -23,9 +23,10 @@
     <div id="app">
         <nav class="navbar" id="navbar">
             <div class="container nav-container">
-                <a href="#" class="logo">
-                    <span>BEE</span>-STOCK
-                    <div class="logo-dot"></div>
+                <a href="#">
+                    {{-- <span>BEE</span>-STOCK
+                    <div class="logo-dot"></div> --}}
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo">
                 </a>
 
                 <ul class="nav-links">
@@ -59,7 +60,6 @@
                     <li><a href="{{ url('/#about') }}">من نحن</a></li>
                     <li><a href="{{ url('/#packages') }}">الباقات</a></li>
                     <li><a href="{{ url('/#contact') }}">تواصل معنا</a></li>
-                    <!-- زر تسجيل الدخول / تسجيل الخروج -->
                     @auth
                         <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                             @csrf
@@ -91,11 +91,11 @@
                         <h4>STOCK-BEE</h4>
                         <p>شركة لوجستية سعودية نؤمن بأن نجاح عملائنا يبدأ من تنظيم سلاسل الإمداد ودقة التنفيذ. نعمل
                             كشريك فعلي مع الشركات.</p>
-                        <div class="social-links">
+                        {{-- <div class="social-links">
                             <a href="#"><i class="fab fa-twitter"></i></a>
                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
                             <a href="#"><i class="fab fa-instagram"></i></a>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <!-- العمود 2: روابط سريعة -->
@@ -162,7 +162,7 @@
                             <i class="fas fa-phone"></i>
                             <div class="contact-info-text">
                                 <strong>الهاتف</strong>
-                                <span>+966 12 345 6789</span>
+                                <span>+966 54 989 2127</span>
                             </div>
                         </div>
 
@@ -170,7 +170,7 @@
                             <i class="fas fa-envelope"></i>
                             <div class="contact-info-text">
                                 <strong>البريد الإلكتروني</strong>
-                                <span>info@stock-bi.com</span>
+                                <span>stockbee.team@outlook.com</span>
                             </div>
                         </div>
 

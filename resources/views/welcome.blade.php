@@ -274,7 +274,7 @@
                         </div>
                         <div class="contact-details">
                             <h4>الهاتف</h4>
-                            <p>+966 12 345 6789</p>
+                            <p>+966 549892127</p>
                         </div>
                     </div>
 
@@ -284,16 +284,16 @@
                         </div>
                         <div class="contact-details">
                             <h4>البريد الإلكتروني</h4>
-                            <p>info@stock-bi.com</p>
+                            <p> stockbee.team@outlook.com</p>
                         </div>
                     </div>
 
-                    <div class="social-links">
+                    {{-- <div class="social-links">
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="contact-form">

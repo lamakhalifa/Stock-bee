@@ -168,82 +168,71 @@
 
             <div class="packages-container">
                 <!-- الباقة الأساسية -->
-                <div class="package-card">
-                    <div class="package-header">
-                        <h3>الأساسية</h3>
-                        <p class="package-description">الحل الأمثل للمشاريع الصغيرة</p>
-                        <div class="package-price">775 <span>ريال</span></div>
-                        <p class="package-period">شهرياً</p>
-                    </div>
-                    <div class="package-divider"></div>
-                    <div class="package-body">
-                        <ul class="package-features">
-                            <li>خدمة من اختيارك</li>
-                            <li>توصيل سريع</li>
-                            <li>تخزين آمن</li>
-                            <li>دعم عبر البريد الإلكتروني</li>
-                            <li>تتبع أساسي للشحنات</li>
-                        </ul>
-                        <button class="package-cta">
-                            <i class="fas fa-shopping-cart"></i>
-                            اختر الباقة
-                        </button>
-                    </div>
-                </div>
+                @foreach ($plans as $plan)
+                    <div class="package-card {{ $loop->index == 1 ? 'featured' : '' }}">
 
-                <!-- الباقة المتقدمة -->
-                <div class="package-card featured">
-                    <div class="featured-badge">الأكثر طلباً</div>
-                    <div class="package-header">
-                        <h3>المتقدمة</h3>
-                        <p class="package-description">للمشاريع المتوسطة والمتنامية</p>
-                        <div class="package-price">1,280 <span>ريال</span></div>
-                        <p class="package-period">شهرياً</p>
-                    </div>
-                    <div class="package-divider"></div>
-                    <div class="package-body">
-                        <ul class="package-features">
-                            <li>خدمتين من اختيارك</li>
-                            <li>كل مزايا الباقة الأساسية</li>
-                            <li>دعم فني متخصص</li>
-                            <li>سعة أكبر في استلام الطلبات</li>
-                            <li>مدير مخصص للمشروع</li>
-                            <li>تتبع الطلبات في الوقت الفعلي</li>
-                            <li>تقارير أداء أسبوعية</li>
-                        </ul>
-                        <button class="package-cta">
-                            <i class="fas fa-crown"></i>
-                            اختر الباقة
-                        </button>
-                    </div>
-                </div>
+                        @if ($loop->index == 1)
+                            <div class="featured-badge">الأكثر طلباً</div>
+                        @endif
 
-                <!-- الباقة الكاملة -->
-                <div class="package-card">
-                    <div class="package-header">
-                        <h3>الكاملة</h3>
-                        <p class="package-description">الحل المتكامل للمشاريع الكبيرة</p>
-                        <div class="package-price">1,800 <span>ريال</span></div>
-                        <p class="package-period">شهرياً</p>
+                        <div class="package-header">
+                            <h3>{{ $plan->name }}</h3>
+                            <p class="package-description">
+                                @if ($plan->name == 'الأساسية')
+                                    الحل الأمثل للمشاريع الصغيرة
+                                @elseif($plan->name == 'المتقدمة')
+                                    للمشاريع المتوسطة والمتنامية
+                                @else
+                                    الحل المتكامل للمشاريع الكبيرة
+                                @endif
+                            </p>
+
+                            <div class="package-price">
+                                {{ number_format($plan->price) }} <span>ريال</span>
+                            </div>
+
+                            <p class="package-period">شهرياً</p>
+                        </div>
+
+                        <div class="package-divider"></div>
+
+                        <div class="package-body">
+                            <ul class="package-features">
+                                @if ($plan->name == 'الأساسية')
+                                    <li>خدمة من اختيارك</li>
+                                    <li>توصيل سريع</li>
+                                    <li>تخزين آمن</li>
+                                    <li>دعم عبر البريد الإلكتروني</li>
+                                    <li>تتبع أساسي للشحنات</li>
+                                @elseif($plan->name == 'المتقدمة')
+                                    <li>خدمتين من اختيارك</li>
+                                    <li>كل مزايا الباقة الأساسية</li>
+                                    <li>دعم فني متخصص</li>
+                                    <li>سعة أكبر في استلام الطلبات</li>
+                                    <li>مدير مخصص للمشروع</li>
+                                @else
+                                    <li>جميع الخدمات</li>
+                                    <li>كل مزايا الباقات السابقة</li>
+                                    <li>دعم على مدار الساعة</li>
+                                    <li>تحليل أداء شهري</li>
+                                @endif
+                            </ul>
+
+                          
+                            <form action="{{ route('payment.initiate') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="plan_id" value="{{ $plan->id }}">
+
+                                <button class="package-cta" type="submit">
+                                    اختر الباقة
+                                </button>
+                            </form>
+
+                        </div>
                     </div>
-                    <div class="package-divider"></div>
-                    <div class="package-body">
-                        <ul class="package-features">
-                            <li>جميع الخدمات</li>
-                            <li>كل مزايا الباقات السابقة</li>
-                            <li>تقارير شهرية مختصرة</li>
-                            <li>دعم على مدار الساعة</li>
-                            <li>تحليل أداء شهري</li>
-                            <li>استشارات لوجستية شهرية</li>
-                            <li>أولوية في المعالجة</li>
-                        </ul>
-                        <button class="package-cta">
-                            <i class="fas fa-rocket"></i>
-                            اختر الباقة
-                        </button>
-                    </div>
-                </div>
+                @endforeach
             </div>
+        </div>
         </div>
     </section>
 

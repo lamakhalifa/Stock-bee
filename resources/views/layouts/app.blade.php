@@ -141,7 +141,7 @@
                                     <i class="fas fa-map-marker-alt"></i>
                                     <span>الفرع الرئيسي - الرياض</span>
                                 </div>
-                                <p class="branch-address">حي العليا، شارع الملك فهد، بجوار مركز العليا التجاري</p>
+                                {{-- <p class="branch-address">حي العليا، شارع الملك فهد، بجوار مركز العليا التجاري</p> --}}
                             </li>
 
                             <!-- فرع الخرج -->
@@ -150,7 +150,7 @@
                                     <i class="fas fa-map-marker-alt"></i>
                                     <span>فرع الرياض</span>
                                 </div>
-                                <p class="branch-address">حي النخيل، طريق الملك خالد، مجمع الخرج التجاري</p>
+                                {{-- <p class="branch-address">حي النخيل، طريق الملك خالد، مجمع الخرج التجاري</p> --}}
                             </li>
                         </ul>
                     </div>

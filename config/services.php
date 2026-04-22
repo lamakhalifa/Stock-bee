@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'paymob' => [
+        'secret_key' => env('PAYMOB_SECRET_KEY'),
+        'public_key' => env('PAYMOB_PUBLIC_KEY'),
+        'integration_id' => env('PAYMOB_INTEGRATION_ID'),
+    ],
+
 ];

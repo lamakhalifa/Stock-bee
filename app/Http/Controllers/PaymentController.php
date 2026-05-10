@@ -36,10 +36,10 @@ class PaymentController extends Controller
                 ]
             ],
             'billing_data' => [
-                'first_name' => $request->user()->first_name ?? 'Ala',
-                'last_name' => $request->user()->last_name ?? 'Zain',
-                'email' => $request->user()->email ?? 'ali@gmail.com',
-                'phone_number' => $request->user()->phone ?? '+92345xxxxxxxx',
+                'first_name' => $request->user()->name,
+                'last_name' => $request->user()->last_name,
+                'email' => $request->user()->email,
+                'phone_number' => $request->user()->phone,
             ],
             'special_reference' => 'order_' . uniqid(),
         ];

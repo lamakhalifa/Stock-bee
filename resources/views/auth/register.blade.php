@@ -139,7 +139,7 @@
                         <div class="login-form-group form-group-slide-in" style="animation-delay: 0.1s">
                             <label for="name" class="login-input-label label-float">
                                 <i class="fas fa-user icon-float"></i>
-                                الاسم الكامل
+                                الاسم الاول
                             </label>
                             <div class="login-input-wrapper input-float">
                                 <input type="text" id="name" name="name"
@@ -151,6 +151,27 @@
                                 </div>
                             </div>
                             @error('name')
+                                <span class="login-input-error shake-animation" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="login-form-group form-group-slide-in" style="animation-delay: 0.1s">
+                            <label for="last_name" class="login-input-label label-float">
+                                <i class="fas fa-user icon-float"></i>
+                                الاسم الاخير
+                            </label>
+                            <div class="login-input-wrapper input-float">
+                                <input type="text" id="last_name" name="last_name"
+                                    class="login-form-input @error('last_name') is-invalid @enderror input-glow"
+                                    value="{{ old('last_name') }}" required autocomplete="last_name" autofocus
+                                    placeholder="أدخل الاسم الكامل">
+                                <div class="login-input-icon">
+                                    <i class="fas fa-id-card"></i>
+                                </div>
+                            </div>
+                            @error('last_name')
                                 <span class="login-input-error shake-animation" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -584,21 +605,21 @@
         }
 
         /* أنيميشن التلاشي للنص -->
-                                    @keyframes fadeIn {
-                                        from {
+                                        @keyframes fadeIn {
+                                            from {
+                                                opacity: 0;
+                                            }
+                                            to {
+                                                opacity: 1;
+                                            }
+                                        }
+                                        
+                                        .text-fade-in {
+                                            animation: fadeIn 1s ease-out 0.8s forwards;
                                             opacity: 0;
                                         }
-                                        to {
-                                            opacity: 1;
-                                        }
-                                    }
-                                    
-                                    .text-fade-in {
-                                        animation: fadeIn 1s ease-out 0.8s forwards;
-                                        opacity: 0;
-                                    }
-                                    
-                                    /* أنيميشن الكتابة للنصوص */
+                                        
+                                        /* أنيميشن الكتابة للنصوص */
         @keyframes typing {
             from {
                 width: 0;

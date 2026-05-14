@@ -103,12 +103,12 @@
                             alt="فريق العمل">
                         <div class="about-image-overlay">
                             <h5>فريق متخصص</h5>
-                            <p>خبرة لأكثر من 10 سنوات</p>
+                            <p>نقدم خدمات بجودة واحترافية عالية</p>
                         </div>
                     </div>
 
                     <div class="about-image-card">
-                        <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        <img src="https://cdn1-m.alittihad.ae/store/archive/image/2025/8/24/dc350dd4-7ac9-4402-b2ee-683bd2236f4a.jpg"
                             alt="عمليات لوجستية">
                         <div class="about-image-overlay">
                             <h5>عمليات متكاملة</h5>
@@ -218,7 +218,7 @@
                                 @endif
                             </ul>
 
-                          
+
                             <form action="{{ route('payment.initiate') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="plan_id" value="{{ $plan->id }}">

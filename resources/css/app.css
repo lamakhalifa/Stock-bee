@@ -1199,12 +1199,12 @@ a {
     justify-content: center;
     font-weight: 900;
     color: #ffdd00;
-    font-size: 0.7rem;
+    font-size: 1.3rem;
     border: 2px solid rgba(255, 221, 0, 0.3);
 }
 
 .package-features li::before {
-    content: "\f00c";
+    content: "✔";
 }
 
 .package-cta {

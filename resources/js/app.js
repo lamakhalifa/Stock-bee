@@ -209,26 +209,6 @@ document.querySelectorAll(".package-card").forEach((card) => {
 });
 
 // ==========================================
-// أزرار اختيار الباقات
-// ==========================================
-document.querySelectorAll(".package-cta").forEach((btn) => {
-    btn.addEventListener("click", function () {
-        const packageName =
-            this.closest(".package-card")?.querySelector("h3")?.textContent;
-        if (!packageName) return;
-
-        this.style.transform = "scale(0.95)";
-        setTimeout(() => (this.style.transform = ""), 200);
-
-        setTimeout(() => {
-            alert(
-                `شكراً لاختيارك باقة "${packageName}"، سنتواصل معك قريباً لتأكيد الطلب!`,
-            );
-        }, 300);
-    });
-});
-
-// ==========================================
 // تفعيل الأنيميشن والكاونترات عند التمرير
 // ==========================================
 let scrollTimeout;

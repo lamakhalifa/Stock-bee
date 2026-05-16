@@ -18,7 +18,7 @@ class LoginController extends Controller
             return '/admin/users';
         }
 
-        return '/home';
+        return '/';
     }
 
     public function __construct()

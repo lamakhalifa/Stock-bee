@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <link rel="icon" type="image/png" href="{{ asset('images/logo2.png') }}">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -60,11 +60,13 @@
                     <li><a href="{{ url('/#about') }}">من نحن</a></li>
                     <li><a href="{{ url('/#packages') }}">الباقات</a></li>
                     <li><a href="{{ url('/#contact') }}">تواصل معنا</a></li>
+
+
                     @auth
-                        <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                        <form method="POST" action="{{ route('logout') }}" style="display: block;">
                             @csrf
                             <button type="submit" class="nav-cta"
-                                style="background: #dc3545; box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);">
+                                style="background: #dc3545; box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);display: block;">
                                 <i class="fas fa-sign-out-alt" style="margin-left: 8px;"></i> تسجيل الخروج
                             </button>
                         </form>
@@ -135,22 +137,18 @@
                     <div class="footer-column footer-branches">
                         <h4>فروعنا</h4>
                         <ul class="branch-list">
-                            <!-- الفرع الرئيسي -->
                             <li class="branch-item">
                                 <div class="branch-name">
                                     <i class="fas fa-map-marker-alt"></i>
-                                    <span>الفرع الرئيسي - الرياض</span>
+                                    <span>الفرع الرئيسي - حي الملك فيصل - الرياض</span>
                                 </div>
-                                {{-- <p class="branch-address">حي العليا، شارع الملك فهد، بجوار مركز العليا التجاري</p> --}}
                             </li>
 
-                            <!-- فرع الخرج -->
                             <li class="branch-item">
                                 <div class="branch-name">
                                     <i class="fas fa-map-marker-alt"></i>
-                                    <span>فرع الرياض</span>
+                                    <span>فرع حي القادسية - الرياض</span>
                                 </div>
-                                {{-- <p class="branch-address">حي النخيل، طريق الملك خالد، مجمع الخرج التجاري</p> --}}
                             </li>
                         </ul>
                     </div>

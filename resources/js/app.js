@@ -228,3 +228,79 @@ window.addEventListener("DOMContentLoaded", () => {
     checkCounters();
 });
 window.addEventListener("load", () => animateOnScroll());
+
+// ==========================================
+// الانميشن في صفحة الدفع بنجاح
+// ==========================================
+
+ (function() {
+        function generateRandomTransaction() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
+            let transId = 'INV-';
+            for (let i = 0; i < 8; i++) {
+                transId += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = now.toLocaleDateString('ar-EG', options);
+            
+            const amount = (Math.random() * (2899 - 99) + 99).toFixed(2);
+            const formattedAmount = `SAR ${parseFloat(amount).toLocaleString('en')}`;
+            
+            return {
+                transId: transId,
+                date: formattedDate,
+                amount: formattedAmount,
+                rawAmount: parseFloat(amount)
+            };
+        }
+        
+        const paymentInfo = generateRandomTransaction();
+        
+        document.getElementById('transId').innerText = paymentInfo.transId;
+        document.getElementById('paymentDate').innerText = paymentInfo.date;
+        document.getElementById('totalAmount').innerHTML = paymentInfo.amount;
+        
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            const colors = ['#ffcd00', '#ffb700', '#ffda44', '#ffcf33', '#e6b800', '#ffc107'];
+            for (let i = 0; i < 55; i++) {
+                const conf = document.createElement('div');
+                conf.classList.add('success-page-confetti');
+                const isCircle = Math.random() > 0.7;
+                if (isCircle) {
+                    conf.style.width = '12px';
+                    conf.style.height = '12px';
+                    conf.style.borderRadius = '50%';
+                } else {
+                    conf.style.width = Math.random() * 8 + 6 + 'px';
+                    conf.style.height = Math.random() * 18 + 10 + 'px';
+                    conf.style.borderRadius = '2px';
+                }
+                conf.style.background = colors[Math.floor(Math.random() * colors.length)];
+                conf.style.left = Math.random() * 100 + '%';
+                conf.style.animationDuration = Math.random() * 2 + 2.5 + 's';
+                conf.style.animationDelay = Math.random() * 1.5 + 's';
+                conf.style.opacity = Math.random() * 0.7 + 0.3;
+                container.appendChild(conf);
+                
+                setTimeout(() => {
+                    if(conf && conf.remove) conf.remove();
+                }, 4000);
+            }
+        }
+        
+        window.addEventListener('load', () => {
+            createConfetti();
+        });
+        
+        function refreshConfetti() {
+            const oldConfs = document.querySelectorAll('.success-page-confetti');
+            oldConfs.forEach(c => c.remove());
+            createConfetti();
+        }
+        
+ 
+        addTimeStamp();
+        
+    })();

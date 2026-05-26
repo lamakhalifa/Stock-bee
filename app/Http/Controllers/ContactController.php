@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactMail;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -17,7 +18,11 @@ class ContactController extends Controller
         ]);
 
       
-        return back()->with('success', 'تم إرسال رسالتك بنجاح');
+    $data = $request->all();
+
+    Mail::to('your-email@example.com')->send(new ContactMail($data));
+
+    return back()->with('success', 'تم إرسال رسالتك بنجاح');
     }
 }
  

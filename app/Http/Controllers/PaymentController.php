@@ -13,15 +13,10 @@ class PaymentController extends Controller
     public function __construct(PaymobService $paymobService)
     {
         $this->paymobService = $paymobService;
-        \Log::info('here');
     }
 
     public function initiatePayment(Request $request)
     {
-        // هنا يمكنك جلب بيانات الطلب الحقيقية من قاعدة البيانات
-        // مثلاً: $order = Order::find($request->order_id);
-
-        \Log::info('Controller: before calling service');
 
         $plan = Plan::findOrFail($request->plan_id);
         $orderData = [
@@ -50,12 +45,24 @@ class PaymentController extends Controller
             return redirect()->back()->withErrors('فشل في تحضير الدفع، يرجى المحاولة لاحقاً');
         }
 
-        // تخزين معرف الدفع أو client_secret في الجلسة أو قاعدة البيانات لاستخدامه لاحقًا في الـ webhook
         session(['paymob_intention_id' => $intention['id']]);
 
-        // توجيه العميل إلى Paymob
         return view('checkout', [
             'clientSecret' => $intention['client_secret']
         ]);
     }
+
+public function callback(Request $request)
+{
+    session([
+        'payment' => $request->all()
+    ]);
+  $success = filter_var($request->get('success'), FILTER_VALIDATE_BOOLEAN);
+
+    if ($success) {
+        return redirect()->route('payment.success');
+    }
+
+    return redirect()->route('payment.failed');
+}
 }

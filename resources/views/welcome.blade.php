@@ -4,6 +4,17 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
+                @if(session('success'))
+<div class="success-alert">
+    <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+    </div>
+    <div class="success-content">
+        <h3 class="success-title">نجاح</h3>
+        <p class="success-message">{{ session('success') }}</p>
+    </div>
+</div>
+@endif
                 <span class="hero-subtitle">شركاؤك في كل خطوة</span>
                 <h1 class="hero-title">عنوانك الأول للعناية <span>بمشروعك</span></h1>
                 <p class="hero-description">شركة لوجستية سعودية نؤمن بأن نجاح عملائنا يبدأ من تنظيم سلاسل الإمداد ودقة
@@ -17,7 +28,6 @@
             </div>
         </div>
     </section>
-
     <!-- قسم من نحن -->
     <section class="about-section" id="about">
         <!-- الخلفية المتحركة -->
@@ -30,6 +40,7 @@
                 <div class="about-minimal-dot"></div>
             </div>
         </div>
+        
 
         <div class="container">
             <div class="section-title">
@@ -286,34 +297,36 @@
                 </div>
 
                 <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label class="form-label">الاسم الكامل</label>
-                            <input type="text" class="form-input" placeholder="أدخل اسمك الكامل" required>
-                        </div>
+                    <form action="{{ route('contact.store') }}" method="POST">
+    @csrf
 
-                        <div class="form-group">
-                            <label class="form-label">البريد الإلكتروني</label>
-                            <input type="email" class="form-input" placeholder="example@domain.com" required>
-                        </div>
+    <div class="form-group">
+        <label class="form-label">الاسم الكامل</label>
+        <input type="text" name="name" class="form-input" placeholder="أدخل اسمك الكامل" required>
+    </div>
 
-                        <div class="form-group">
-                            <label class="form-label">رقم الهاتف</label>
-                            <input type="tel" class="form-input" placeholder="+966 5X XXX XXXX" required>
-                        </div>
+    <div class="form-group">
+        <label class="form-label">البريد الإلكتروني</label>
+        <input type="email" name="email" class="form-input" placeholder="example@domain.com" required>
+    </div>
 
-                        <div class="form-group">
-                            <label class="form-label">الشركة (اختياري)</label>
-                            <input type="text" class="form-input" placeholder="اسم شركتك">
-                        </div>
+    <div class="form-group">
+        <label class="form-label">رقم الهاتف</label>
+        <input type="tel" name="phone" class="form-input" placeholder="+966 5X XXX XXXX" required>
+    </div>
 
-                        <div class="form-group">
-                            <label class="form-label">الرسالة</label>
-                            <textarea class="form-input" placeholder="كيف يمكننا مساعدتك؟" required></textarea>
-                        </div>
+    <div class="form-group">
+        <label class="form-label">الشركة (اختياري)</label>
+        <input type="text" name="company" class="form-input" placeholder="اسم شركتك">
+    </div>
 
-                        <button type="submit" class="submit-btn">إرسال الرسالة</button>
-                    </form>
+    <div class="form-group">
+        <label class="form-label">الرسالة</label>
+        <textarea name="message" class="form-input" placeholder="كيف يمكننا مساعدتك؟" required></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn">إرسال الرسالة</button>
+</form>
                 </div>
             </div>
         </div>

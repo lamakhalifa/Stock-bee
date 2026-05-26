@@ -15,14 +15,13 @@ class PaymobService
     {
         $this->secretKey = config('services.paymob.secret_key');
         $this->publicKey = config('services.paymob.public_key');
-        \Log::info('Paymob secret key: ' . ($this->secretKey ? 'found' : 'MISSING'));
     }
 
     /**
-     * إنشاء نية دفع لدى Paymob
+     * 
      *
-     * @param array $orderData بيانات الطلب (المبلغ، المنتجات، بيانات العميل)
-     * @return array|null بيانات الاستجابة من Paymob أو null في حال الفشل
+     * @param array 
+     * @return array|null 
      */
     public function createPaymentIntention(array $orderData): ?array
     {
@@ -44,9 +43,7 @@ class PaymobService
             'notification_url' => $orderData['notification_url'] ?? route('webhook.paymob'),
             'redirection_url' => $orderData['redirection_url'] ?? route('payment.callback'),
         ];
-        Log::error($payload);
 
-        // https://ksa.paymob.com/v1/intention/
         try {
             $response = Http::withHeaders([
                 'Authorization' => 'Token ' . $this->secretKey,
@@ -55,7 +52,6 @@ class PaymobService
 
             if ($response->successful()) {
                 $data = $response->json();
-                Log::info('Payment intention created', ['intention_id' => $data['id'] ?? null]);
                 return $data;
             } else {
                 Log::error('Paymob intention creation failed', [
@@ -70,32 +66,11 @@ class PaymobService
         }
     }
 
-    /**
-     * توجيه المستخدم إلى صفحة الدفع الموحدة من Paymob
-     */
+
     public function redirectToCheckout(string $clientSecret): RedirectResponse
     {
         $url = "https://accept.paymob.com/unifiedcheckout/?publicKey={$this->publicKey}&clientSecret={$clientSecret}";
         return redirect()->away($url);
     }
 
-    /**
-     * بيانات فواتير افتراضية (يمكن استبدالها ببيانات حقيقية من المستخدم)
-     */
-    protected function getDefaultBillingData(): array
-    {
-        return [
-            'apartment' => 'NA',
-            'first_name' => 'Guest',
-            'last_name' => 'User',
-            'street' => 'NA',
-            'building' => 'NA',
-            'phone_number' => '0000000000',
-            'city' => 'Cairo',
-            'country' => 'EG',
-            'email' => 'guest@example.com',
-            'floor' => 'NA',
-            'state' => 'NA',
-        ];
-    }
 }

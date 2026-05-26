@@ -168,7 +168,7 @@
                             <i class="fas fa-envelope"></i>
                             <div class="contact-info-text">
                                 <strong>البريد الإلكتروني</strong>
-                                <span>stockbee.team@outlook.com</span>
+                                <span>contact@stockbee.net</span>
                             </div>
                         </div>
 

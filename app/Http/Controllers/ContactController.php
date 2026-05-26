@@ -20,7 +20,7 @@ class ContactController extends Controller
       
     $data = $request->all();
 
-    Mail::to('your-email@example.com')->send(new ContactMail($data));
+    Mail::to('contact@stockbee.net')->send(new ContactMail($data));
 
     return back()->with('success', 'تم إرسال رسالتك بنجاح');
     }

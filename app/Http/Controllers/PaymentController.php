@@ -17,7 +17,8 @@ class PaymentController extends Controller
 
     public function initiatePayment(Request $request)
     {
-
+ت
+              
         $plan = Plan::findOrFail($request->plan_id);
         $orderData = [
             'amount' => $plan->price * 100,
@@ -41,9 +42,10 @@ class PaymentController extends Controller
 
         $intention = $this->paymobService->createPaymentIntention($orderData);
 
-        if (!$intention || empty($intention['client_secret'])) {
-            return redirect()->back()->withErrors('فشل في تحضير الدفع، يرجى المحاولة لاحقاً');
-        }
+        
+	if (!$intention || empty($intention['client_secret'])) {
+    		return redirect()->back()->withErrors('حدث خطأ أثناء إنشاء عملية الدفع');
+	}
 
         session(['paymob_intention_id' => $intention['id']]);
 

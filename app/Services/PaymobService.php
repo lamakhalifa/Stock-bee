@@ -53,6 +53,7 @@ class PaymobService
             if ($response->successful()) {
                 $data = $response->json();
                 return $data;
+
             } else {
                 Log::error('Paymob intention creation failed', [
                     'status' => $response->status(),

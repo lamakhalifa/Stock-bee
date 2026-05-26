@@ -284,7 +284,7 @@
                         </div>
                         <div class="contact-details">
                             <h4>البريد الإلكتروني</h4>
-                            <p> stockbee.team@outlook.com</p>
+                            <p> contact@stockbee.net</p>
                         </div>
                     </div>
 
